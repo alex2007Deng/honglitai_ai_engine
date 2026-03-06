@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fin-bot-service
+spec:
+  selector:
+    app: fin-bot
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      

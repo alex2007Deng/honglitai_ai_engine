@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-bot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-bot
+  template:
+    metadata:
+      labels:
+        app: gateway-bot
+    spec:
+      containers:
+      - name: gateway
+        image: your-discord-gateway-image:latest
+        env:
+        - name: GATEWAY_BOT_TOKEN
+          value: "$(GATEWAY_BOT_TOKEN)"
+        - name: ENG_BOT_URL
+          value: "http://eng-bot-service:8080"
+        - name: SCM_BOT_URL
+          value: "http://scm-bot-service:8080"
+        - name: SAL_BOT_URL
+          value: "http://sal-bot-service:8080"
+        - name: FIN_BOT_URL
+          value: "http://fin-bot-service:8080"
+        - name: QC_BOT_URL
+          value: "http://qc-bot-service:8080"
+        - name: WHS_BOT_URL
+          value: "http://whs-bot-service:8080"

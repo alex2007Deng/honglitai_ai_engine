@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whs-bot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whs-bot
+  template:
+    metadata:
+      labels:
+        app: whs-bot
+    spec:
+      containers:
+      - name: bot
+        image: bdistin/discord-bot-container:latest
+        env:
+        - name: BOT_TOKEN
+          value: "$(BOT_TOKEN_WHS)"
+          
